@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CreateProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +23,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+Route::get('/product/create', [CreateProductController::class, 'create'])
+    ->name('product.create');
+
+Route::get('/cart', [CartController::class, 'show'])
+    ->name('cart.show');
+
+require __DIR__ . '/auth.php';
